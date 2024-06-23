@@ -1,0 +1,13 @@
+<div id="article">
+    <div id="article_title">
+        {{ page.title }}
+    </div>
+    <div id="article_content">
+        {% for paragraph in page.content %}
+
+            {{ paragraph | newline_to_br }}
+
+        {% endfor %}
+    </div>
+
+</div>

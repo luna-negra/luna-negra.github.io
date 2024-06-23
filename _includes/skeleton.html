@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script src="/assets/js/nav.js"></script>
+    <title>{{ site.title }}</title>
+</head>
+
+<body>
+    {% include header.html %}
+
+    <div id="body">
+
+    {% include nav.html %}
+
+    {% if page.layout == 'home' %}
+        {% include body.html %}
+    {% elsif page.layout == 'page' % %}
+        {% include body_about.html %}
+    {% elsif page.layout == 'post' %}
+        {% include body_post.html %}
+    {% elsif page.layout == 'list' %}
+        {% include body_list.html %}
+    {% elsif page.layout == 'default' %}
+        {% include 404.html %}
+    {% endif %}
+
+    </div>
+
+    {% include footer.html %}
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+- category: page
+  sub_category: []
+
+- category: category1
+  sub_category: ['sub category1', 'sub category2']
+
+- category: category2
+  sub_category: ['sub category1', 'sub category2', 'sub category3']

@@ -1,0 +1,39 @@
+<aside id="nav">
+
+    {% for category in site.data.categories %}
+
+        {% assign category = category['category'] %}
+        <div class="nav_category">
+            {% if category['sub_category'].size != 0 %}
+            <div class="nav_category_unit">
+                {{ category['category'] | upcase }}
+            </div>
+
+            <div class="nav_category_unit_list">
+                {% for subcategory in category['sub_category'] %}
+
+                    <a href="/{{ category['category'] }}/{{ subcategory }}/">
+                        <div class="nav_sub_category">
+                            &nbsp;&nbsp;- {{ subcategory | capitalize }}
+                        </div>
+                    </a>
+
+                {% endfor %}
+            </div>
+
+            {% else %}
+            <a href="/{{ category['category'] }}/">
+                <div class="nav_category_unit">
+                    {{ category['category'] | upcase }}
+                </div>
+            </a>
+            {% endif %}
+        </div>
+
+    {% endfor %}
+
+    <div id="nav_advertise">
+
+    </div>
+
+</aside>

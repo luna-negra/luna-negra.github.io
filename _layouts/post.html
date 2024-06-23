@@ -1,0 +1,23 @@
+{% include skeleton.html %}
+
+{% comment %}
+
+< post.html >
+
+all posts have common values.
+---
+layout: on _config.yml > defaults > values > layout
+author: on _config.yml > defaults > values > defaults
+url   : /{category}/{sub_category}/{filename}.html
+---
+
+[ Front Matter ]
+title: "title of post in string"
+date: "datetime in string when the post created"
+edited: "datetime in string when the post edited. if this value is set as blank, it will be same as 'date'".
+tags: "hashtag keywords in yaml list form. use space to write down more than one keyword."
+categories:
+  - {category}
+  - {sub_category)
+
+{% endcomment %}

@@ -1,0 +1,24 @@
+<div id="article">
+
+    <div id="article_title">
+        $ All Posts of This Blog
+    </div>
+
+    <div id="article_content">
+    {% for post in site.posts | sort: 'last_updated' %}
+
+        <div class="post_list_unit">
+
+            <div class="post_list_unit_title">
+                <a href="{{ post.url }}"><b>{{ post.title }}</b></a>
+            </div>
+
+            <div class="post_list_unit_info">
+                On {{ post.date | date_to_xmlshcema | replace: "T", " " }},&nbsp; Created by {{ post.author }}
+            </div>
+        </div>
+        <hr class="post_list">
+
+    {% endfor %}
+    </div>
+</div>

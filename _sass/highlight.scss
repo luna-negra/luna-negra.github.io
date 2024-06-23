@@ -1,0 +1,79 @@
+:root {
+    /* highlight */
+    --highlight-bgcolor: #0B0B0C;
+
+    --highlight-lineno: #dddddd;
+    --highlight-text-red: #F50E07;
+    --highlight-text-yellow: yellow;
+    --highlight-text-crimson: #DC143C;
+    --highlight-text-green: #5EEE38;
+    --highlight-text-blue: #075AF5;
+}
+
+figure.highlight {
+    margin-inline-start: 5px;
+    min-width: 450px;
+    max-width: 700px;
+}
+
+table.rouge-table {
+    width: 100%;
+}
+
+table.rouge-table > tbody > tr > td > pre {
+    padding-top: 11px;
+    padding-bottom: 11px;
+}
+
+table.rouge-table > tbody > tr > pre > span{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+td.code > pre {
+    min-width: 400px;
+    max-width: 800px;
+    overflow-x: auto;
+}
+
+pre, pre > span{
+    border-color: var(--highlight-bgcolor);
+    background-color: var(--highlight-bgcolor);
+
+    font-size: 11pt;
+    color: var(--highlight-text-green);
+}
+
+code.language-ruby,
+pre > code > span {
+    border-color: var(--highlight-bgcolor);
+    background-color: var(--highlight-bgcolor);
+
+    font-size: 11pt;
+    color: var(--highlight-text-yellow);
+}
+
+pre.lineno {
+    color: var(--highlight-lineno);
+    text-align: center;
+}
+
+span.highlight_red {
+    color: var(--highlight-text-red);
+}
+
+span.highlight_crimson {
+    color: var(--highlight-text-crimson);
+}
+
+span.highlight_yellow {
+    color: yellow;
+}
+
+span.highlight_green {
+    color: var(--highlight-text-green);
+}
+
+span.highlight_blue {
+    color: var(--highlight-text-blue);
+}

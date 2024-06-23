@@ -1,0 +1,66 @@
+<div id="article">
+
+    <div id="article_title">
+        <a href="/{{ page.categories[0] }}/{{ page.categories[1] }}">
+            [<span>{{ page.categories[0] }}/{{ page.categories[1] }}</span>]
+        </a> $&nbsp;{{ page.title }}
+    </div>
+
+    <div id="article_info">
+
+        <table id="article_info_tb">
+            <tbody>
+                <tr>
+                    <td class="article_info_key">Author</td>
+                    <td class="article_info_value">
+                        {% if page.author %}
+                            {{ page.author }}
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="article_info_key">Created On</td>
+                    <td class="article_info_value">
+                        {% if page.date %}
+                            {{ page.date | date_to_xmlschema | replace: "T", " " }}
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="article_info_key">Edited On</td>
+                    <td class="article_info_value">
+                        {% if page.edited == nil or page.edited.size == 0 %}
+                            {{ page.date | date_to_xmlschema | replace: "T", " " }}
+                        {% else %}
+                            {{ page.edited | date_to_xmlschema | replace: "T", " " }}
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="article_info_key">Tags</td>
+                    <td class="article_info_value">
+                        {% if page.tags.size == 0  %}
+                            No Tags for This blog
+                        {% else %}
+                            {% for tag in page.tags %}
+                                #{{ tag }}&nbsp;
+                            {% endfor %}
+                        {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+    <hr>
+
+    <div id="article_content">
+        {% for paragraph in page.content %}
+                {{ paragraph }}
+        {% endfor %}
+    </div>
+    $ EOF
+
+    <div id="article_advertise"></div>
+</div>

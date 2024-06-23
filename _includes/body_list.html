@@ -1,0 +1,35 @@
+<div id="article">
+
+    {% assign list_category_total_list = page.permalink | downcase | split: "/" %}
+    {% assign list_category = list_category_total_list[1] %}
+    {% assign list_subcategory = list_category_total_list | last %}
+
+    {% comment %} Category Name {% endcomment %}
+    <div id="article_title">
+        $&nbsp;Category '{{ list_category | capitalize }} / {{ list_subcategory | capitalize }}'<br>
+    </div>
+
+    <div id="article_content">
+        {% for post in site.posts | sort: 'last_updated' %}
+            {% assign post_category = post.categories[0] %}
+            {% assign post_subcategory = post.categories[1] %}
+
+            {% if (post_category == list_category) and (post_subcategory == list_subcategory) %}
+
+                {% comment %} 여기에 Post List 나열 {% endcomment %}
+                <div class="post_list_unit">
+                    <div class="post_list_unit_title">
+                        <a href="{{ post.url }}"><b>{{ post.title }}</b></a>
+                    </div>
+                    <div class="post_list_unit_info">
+                        On {{ post.date | date_to_xmlshcema | replace: "T", " " }},&nbsp; Created by {{ post.author }}
+                    </div>
+                </div>
+                <hr class="post_list">
+
+            {% endif %}
+
+        {% endfor %}
+    </div>
+
+</div>
