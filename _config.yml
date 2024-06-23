@@ -17,14 +17,13 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-
-title: SET YOUR SITE NAME on _config.yml # enter your blog name without quote.
-email: # enter your email address without quote.
+title: Pavel's IT Garage # enter your blog name without quote.
+email: blitzangreiffer@gmail.com # enter your email address without quote.
 description:  # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username:
-github_username:
+github_username: luna-negra
 
 # Build settings
 #theme: minima
@@ -42,14 +41,14 @@ permalink: none
 # Settings for jekyll theme ubuntu.
 # In terms of defaults, please refer to default front-end at the site below.
 # 'https://jekyllrb.com/docs/step-by-step/09-collections/#front-matter-defaults'
-owner: AUTHOR_NAME_ON_config_yml # enter your post author name without double quote.
+owner: Pavel # enter your post author name without double quote.
 defaults:
   - scope:
       path: ""
       type: "post"
     values:
       layout: "post"
-      author: "AUTHOR_NAME_ON_config_yml" # enter your post author name with double quote.
+      author: "Pavel" # enter your post author name with double quote.
 
 # Exclude from processing.
 # The following items will not be processed, by default.

@@ -1,8 +1,14 @@
-- category: page
+- category: about
   sub_category: []
 
-- category: category1
-  sub_category: ['sub category1', 'sub category2']
+- category: linux
+  sub_category: ['protocols', 'trouble shootings']
 
-- category: category2
-  sub_category: ['sub category1', 'sub category2', 'sub category3']
+- category: python
+  sub_category: ['protocols', 'trouble shootings']
+
+- category: django
+  sub_category: ['protocols', 'api framework', 'trouble shootings']
+
+- category: project
+  sub_category: ['guardia', 'jekyll-theme-ubuntu']
