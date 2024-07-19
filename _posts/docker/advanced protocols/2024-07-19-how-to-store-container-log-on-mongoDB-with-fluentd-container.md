@@ -1,6 +1,6 @@
 ---
 title: 001. How to Store Container Logs on MongoDB Container with Fluentd Container
-date: "2024-07-19 17:07:00"
+date: "2024-07-19 17:07:00 +0900"
 edited: 
 tags:
   - docker container
@@ -55,7 +55,7 @@ Before doing this, 'rsyslog' package must be installed on the host machine and y
 Here is the result of executing commands above.
 </p>
 
-![img.png](../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img1.png)
+![img.png](../../../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img1.png)
 
 <p>
 As you can see, each container send its logs to the host successfully but these logs have a different format.
@@ -132,7 +132,7 @@ In this post, I will show how to store all container logs on NoSQL - with MongoD
 
 <br><br>
 ### <span id='prtc2'>2. Architecture</span>
-![img.png](../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img2.png)
+![img.png](../../../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img2.png)
 <p>
 Nginx and MySQL container send their own logs to Fluentd Container with destination port 24224.
 Fluentd container reconstruct the structure of received logs and forward them to MongoDB with destination port 27017. 
@@ -240,7 +240,7 @@ If the container is running successfully, you can connect to the tcp/27017 port 
 #  curl -v telnet://192.30.1.4:27017
 {% endhighlight %}
 
-![img.png](../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img3.png)
+![img.png](../../../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img3.png)
 
 <p>
 You can connect to the MongoDB Shell by executing command below.
@@ -264,7 +264,7 @@ You can connect to the MongoDB Shell by executing command below.
 You can see the result as below unless there is no issues.
 </p>
 
-![img.png](../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img4.png)
+![img.png](../../../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img4.png)
 
 <p>
 If you set the MONGO_INITDB_ROOT_USERNAME and MONGO_INITDB_ROOT_PASSWORD, 
@@ -292,7 +292,7 @@ I will set the name of the database as 'logs'.
 #  /* you can use passwordPrompt() instead of plain password "password".
 {% endhighlight %}
 
-![img.png](../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img10.png)
+![img.png](../../../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img10.png)
 
 
 <br><br>
@@ -360,7 +360,7 @@ Refer to the code below
 #  * CMD  :  Executing command when the image is run as a container.
 {% endhighlight %}
 
-![img.png](../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img5.png)
+![img.png](../../../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img5.png)
 
 <p>
 In Dockerfile, docker will copy the file 'fluentd.conf' to the new fluentd container. 
@@ -397,7 +397,7 @@ The meanings of fluentd.conf are, <br>
 -  fluentd will store the forwarding logs on the document(table) named 'container' which located in database 'logs'.<br>
 </p>
 
-![img.png](../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img6.png)
+![img.png](../../../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img6.png)
 
 <p>
 From now on, new fluentd docker image, which has mongodb plug-in, can be created. 
@@ -413,7 +413,7 @@ Move to the folder containing 'Dockefile' and 'fluentd.conf' and execute image b
 Once the building process is successfully completed, you can see the new fluentd docker images on your host.
 </p>
 
-![img.png](../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img7.png)
+![img.png](../../../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img7.png)
 
 <p>
 Now, run the newly created image with command below.
@@ -452,7 +452,7 @@ If the contents of config is different with 'fluentd.conf' you created, mongodb 
 This phenomenon will be happened when you miss the fluentd's -c option.
 </p>
 
-![img.png](../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img8.png)
+![img.png](../../../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img8.png)
 
 <br><br>
 ### <span id='prtc6'>6. Run Container and Collecting Logs</span>
@@ -474,7 +474,7 @@ Before doing that, make sure that there is any database name 'log' on Mongo DB C
 #  show dbs;
 {% endhighlight %}
 
-![img.png](../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img9.png)
+![img.png](../../../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img9.png)
 
 {% highlight ruby %}
 #  Please remind again that if you set the MONGO_INITDB_ROOT_USERNAME and MONGO_INITDB_ROOT_PASSWORD during creating mongodb container,
@@ -508,15 +508,15 @@ At the first time the mongodb recognise the forwarded log, it will create databa
 Now, mysql container produces its log during start its service. you can make another nginx logs by accessing nginx website.
 </p>
 
-![img_1.png](../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img11.png)
+![img_1.png](../../../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img11.png)
 
 <p>
 Access the mongodb shell again, see the data accumulated in the 'logs.container' collection.
 </p>
 
-![img.png](../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img12.png)
-![img.png](../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img13.png)
-![img.png](../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img14.png)
+![img.png](../../../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img12.png)
+![img.png](../../../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img13.png)
+![img.png](../../../assets/imgs/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img14.png)
 
 
 <br><br>
