@@ -125,7 +125,7 @@ In this post, I will show how to store all container logs on NoSQL - with MongoD
     </tr>
     <tr>
         <td>- Docker Network</td>
-        <td>Default Host Bridge (Docker0)</td>
+        <td>Default Host Bridge (docker0)</td>
     </tr>
 
 </table>
@@ -141,7 +141,7 @@ Fluentd container reconstruct the structure of received logs and forward them to
 <br><br>
 ### <span id='prtc3'>3. Prerequisite</span>
 <p>
-(1) Firewall-cmd Setting for 'docker0' Zone <br>
+(1) Firewall-cmd Setting for 'docker' Zone <br>
 
 After installing docker, you can see the zone named 'docker' on the host's firewall.
 It has a target 'ACCEPT' as a default, which means firewall on the host does not block any traffic to docker.
