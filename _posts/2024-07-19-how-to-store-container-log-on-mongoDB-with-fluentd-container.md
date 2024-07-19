@@ -1,6 +1,6 @@
 ---
 title: 001. How to Store Container Logs on MongoDB Container with Fluentd Container
-date: "2024-05-19 17:07:00"
+date: "2024-07-19 17:07:00"
 edited: 
 tags:
   - docker container
