@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function ()
                 Array.from(spans).forEach(
                     function (span) {
                         var text = span.innerHTML;
-                        var flag = true;
                         var i = 0;
                         span.innerHTML = "";
 
@@ -18,14 +17,18 @@ document.addEventListener("DOMContentLoaded", function ()
 
                                 if (text[i] === "&")
                                 {
-                                    flag = false;
+                                    if (text[i+1] === "l" && text[i+2] === 't' && text[i+3] ===';')
+                                    {
+                                        span.innerHTML += "<";
+                                        i += 4;
+                                    }
+                                    else if (text[i+1] === "g" && text[i+2] === 't' && text[i+3] ===';')
+                                    {
+                                        span.innerHTML += ">";
+                                        i += 4;
+                                    }
                                 }
-                                else if (text[i] === ';')
-                                {
-                                    flag = true;
-                                }
-
-                                if (flag)
+                                else
                                 {
                                     if (text[i] === "#")
                                     {
@@ -36,9 +39,8 @@ document.addEventListener("DOMContentLoaded", function ()
                                         span.innerHTML += text[i];
                                     }
                                     i++;
-                                    setTimeout(typeEffect, 50);
-
                                 }
+                                setTimeout(typeEffect, 50);
                             }
                         }
                         typeEffect();

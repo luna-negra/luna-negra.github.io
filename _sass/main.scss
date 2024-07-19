@@ -36,7 +36,7 @@ a.hover {
 }
 
 img {
-    max-width: 750px;
+    max-width: 850px;
     max-height: 500px;
 }
 
@@ -145,6 +145,8 @@ div.post_list_unit_title {
 }
 
 div#article_title > a > span:hover,
+fieldset > a:hover,
+p > a:hover,
 div.post_list_unit_title > a > b:hover {
     color: var(--hover-text-color);
 }

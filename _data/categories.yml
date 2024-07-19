@@ -1,14 +1,8 @@
 - category: about
   sub_category: []
 
-- category: linux
-  sub_category: ['protocols', 'trouble shootings']
-
-- category: python
-  sub_category: ['protocols', 'trouble shootings']
-
-- category: django
-  sub_category: ['protocols', 'api framework', 'trouble shootings']
+- category: docker
+  sub_category: ['basic usage', 'advanced protocols', 'trouble shooting']
 
 - category: project
-  sub_category: ['guardia', 'jekyll-theme-ubuntu']
+  sub_category: []
