@@ -1,7 +1,7 @@
 ---
 title: 001. How to Store Container Logs on MongoDB Container with Fluentd Container
 date: "2024-07-19 17:07:00 +0900"
-edited: 
+edited: "2024-07-20 22:58:00 +0900"
 tags:
   - docker container
   - container logging
@@ -234,7 +234,7 @@ If the container is running successfully, you can connect to the tcp/27017 port 
 
 {% highlight ruby linenos %}
 #  /*  Check the mongo container is running  */
-#  docker container ls -a --filter "name=mongodb" | grep Up
+#  sudo docker container ls -a --filter "name=mongodb" | grep Up
 #
 #  /*  Check the mongodb port open - tcp/27017  */
 #  curl -v telnet://192.30.1.4:27017
@@ -248,7 +248,7 @@ You can connect to the MongoDB Shell by executing command below.
 
 {% highlight ruby linenos %}
 #  /*  Connect to MongoDB container terminal  */
-#  docker exec -it mongodb /bin/bash
+#  sudo docker exec -it mongodb /bin/bash
 #  
 #  (Prompt will be changed)
 #  /*  Connect to MongoDB Shell in container  */
@@ -308,7 +308,7 @@ First, Check the fluent/fluentd:edge-debian image is downloaded and stored on yo
 
 {% highlight ruby linenos%}
 #  /*  Check fluent/fluentd:edge-debian image on your machine  */
-#  docker images --filter "reference=fluent/fluentd:edge-debian"
+#  sudo docker images --filter "reference=fluent/fluentd:edge-debian"
 {% endhighlight %}
 
 <p>
@@ -406,7 +406,7 @@ Move to the folder containing 'Dockefile' and 'fluentd.conf' and execute image b
 
 {% highlight ruby linenos %}
 #  /*  Build new fluentd image containing mongodb plug-in  */
-#  docker build -t fluentd-mongo:1.0 .
+#  sudo docker build -t fluentd-mongo:1.0 .
 {% endhighlight %}
 
 <p>
@@ -443,7 +443,7 @@ After running container, check the fluentd containers log by 'docker logs' comma
 
 {% highlight ruby linenos %}
 #  /*  Check the fluentd container log  */
-#  docker logs fluentd
+#  sudo docker logs fluentd
 {% endhighlight %}
 
 <p>
@@ -463,7 +463,7 @@ Before doing that, make sure that there is any database name 'log' on Mongo DB C
 
 {% highlight ruby linenos %}
 #  /*  Connect to mongo container's terminal'  */
-#  docker exec -it mongodb /bin/bash
+#  sudo docker exec -it mongodb /bin/bash
 #
 #  (Prompt will be changed)
 #  /*  Connect to MongoDB Shell  */
@@ -489,19 +489,19 @@ At the first time the mongodb recognise the forwarded log, it will create databa
 
 {% highlight ruby linenos %}
 #  /#  Run 'mysql' container with log sending setting.
-#  docker run -d --name mysql --hostname mysql \
-#                --log-driver fluentd \
-#                --log-opt fluentd-address=192.30.1.4:24224 \
-#                --log-opt tag=docker.log.mysql \
-#                -e MYSQL_ROOT_PASSWORD=password \
-#                mysql:5.7
+#  sudo docker run -d --name mysql --hostname mysql \
+#                     --log-driver fluentd \
+#                     --log-opt fluentd-address=192.30.1.4:24224 \
+#                     --log-opt tag=docker.log.mysql \
+#                     -e MYSQL_ROOT_PASSWORD=password \
+#                     mysql:5.7
 #  
 #  /#  Run 'nginx' container with log sending setting.
-#  docker run -d --name nginx --hostname nginx \
-#                --log-driver fluentd \
-#                --log-opt fluentd-address=192.30.1.4:24224 \
-#                --log-opt tag=docker.log.mysql \
-#                nginx
+#  sudo docker run -d --name nginx --hostname nginx \
+#                     --log-driver fluentd \
+#                     --log-opt fluentd-address=192.30.1.4:24224 \
+#                     --log-opt tag=docker.log.mysql \
+#                     nginx
 {% endhighlight %}
 
 <p>
@@ -522,9 +522,9 @@ Access the mongodb shell again, see the data accumulated in the 'logs.container'
 <br><br>
 ## Refernces
 <p>
--  <a href="https://en.wikipedia.org/wiki/Fluentd">https://en.wikipedia.org/wiki/Fluentd</a><br>
--  <a href="https://docs.docker.com/config/containers/logging/fluentd/#usage">https://docs.docker.com/config/containers/logging/fluentd/#usage</a><br>
--  <a href="https://www.mongodb.com/docs/manual/reference/method/db.createUser/">https://www.mongodb.com/docs/manual/reference/method/db.createUser/</a><br>
+-  <a href="https://en.wikipedia.org/wiki/Fluentd" target="_blank">https://en.wikipedia.org/wiki/Fluentd</a><br>
+-  <a href="https://docs.docker.com/config/containers/logging/fluentd/#usage" target="_blank">https://docs.docker.com/config/containers/logging/fluentd/#usage</a><br>
+-  <a href="https://www.mongodb.com/docs/manual/reference/method/db.createUser/" target="_blank">https://www.mongodb.com/docs/manual/reference/method/db.createUser/</a><br>
 </p>
 
 
