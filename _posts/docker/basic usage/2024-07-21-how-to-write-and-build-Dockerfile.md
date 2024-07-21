@@ -59,8 +59,19 @@ Then, let me make a new django container manually. I will use image 'python:3.12
 #  : ' Make Django Project: project name is 'project' '
 #  django-admin startproject project
 #
+#  : ' Exit container '
+#  ctrl + p + q
+#
+#  (Prompt will be changed)
+#  : ' Copy settings.py in python3 container '
+#  docker copy python:/project/project/settings.py .
+#
+#  : ' Edit settings.py '
+#  
+#
+#
 #  : ' Move to project folder '
-#  cd project
+#  cd /project
 #
 #  : ' Run Django Server '
 #  python manage.py runserver
