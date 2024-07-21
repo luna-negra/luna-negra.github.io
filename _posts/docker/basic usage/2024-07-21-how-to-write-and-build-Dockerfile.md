@@ -1,5 +1,5 @@
 ---
-title: 002. How to Write and Build Dockerfile
+title: 0002. How to Write and Build Dockerfile
 date: "2024-07-21 22:07:00 +0900"
 edited: 
 tags:
