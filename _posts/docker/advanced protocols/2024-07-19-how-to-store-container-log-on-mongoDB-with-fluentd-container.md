@@ -30,11 +30,11 @@ Before doing this, 'rsyslog' package must be installed on the host machine and y
 </p>
 
 {% highlight ruby linenos %}
-#  /*  Pull Docker Images for 'mysql:5.7' and 'nginx:latest'  */
+#  : ' Pull Docker Images for 'mysql:5.7' and 'nginx:latest'  '
 #  docker pull mysql:5.7
 #  docker pull nginx:latest
 #
-#  /*  Run new 'mysql' with syslog log-driver  */
+#  : ' Run new 'mysql' with syslog log-driver  '
 #  sudo docker run -d --name mysql --hostname mysql  \
 #                  --log-driver syslog \
 #                  --log-opt syslog-address=udp://192.30.1.4:514 \
@@ -42,7 +42,7 @@ Before doing this, 'rsyslog' package must be installed on the host machine and y
 #                  -e MYSQL_ROOT_PASSWORD=password \
 #                  mysql:5.7
 #
-#  /*  Run new 'nginx' with syslog log-driver. You can record nginx log by access the nginx web.  */
+#  : ' Run new 'nginx' with syslog log-driver. You can record nginx log by access the nginx web.  '
 #  sudo docker run -d --name nginx --hostname nginx \
 #                  --log-driver syslog \
 #                  --log-opt syslog-address=udp://192.30.1.4:514 \
@@ -151,10 +151,10 @@ I recommend to change target as a 'ACCEPT' if you are not familiar with linux fi
 </p>
 
 {% highlight ruby linenos %}
-#  /* Check the firewall target for zone 'docker'  */
+#  : ' Check the firewall target for zone 'docker'  '
 #  sudo firewall-cmd --list-all --zone=docker | grep target 
 #
-#  /* Change firewall target for zone 'docker' and reload firewall-cmd service */
+#  : ' Change firewall target for zone 'docker' and reload firewall-cmd service '
 #  sudo firewall-cmd --set-target=ACCEPT --zone=docker --permanent
 #  sudo firewall-cmd --reload
 {% endhighlight %}
@@ -165,10 +165,10 @@ In this post, host port 8000 will be used as a nginx default port(tcp/80) by usi
 </p>
 
 {% highlight ruby linenos %}
-#  /*  Add port to default firewall zone */
+#  : ' Add port to default firewall zone '
 #  sudo firewall-cmd --add-port=8000/tcp
 #
-#  /*  If you also want to get mysql access log, */
+#  : ' If you also want to get mysql access log, '
 #  sudo firewall-cmd --add-port=[HOST_PORT-FOR_MYSQL]/tcp
 {% endhighlight %}
 
@@ -179,7 +179,7 @@ If not, You will not be able to do this protocol later.
 </p>
 
 {% highlight ruby linenos %}
-#  /*  Check Internet Connection by ping to google DNS  */
+#  : ' Check Internet Connection by ping to google DNS  '
 #  ping 8.8.8.8 -c 4
 {% endhighlight %}
 
@@ -189,16 +189,16 @@ As I mentioned at '<a href="#prtc1">1. Test Environment</a>', docker images rela
 </p>
 
 {% highlight ruby linenos %}
-#  /* Pulling down mongodb:latest Docker image */
+#  : ' Pulling down mongodb:latest Docker image '
 #  sudo docker pull mongo
 #
-#  /* Pulling down fluent/fluentd:edge-debian Docker image */
+#  : ' Pulling down fluent/fluentd:edge-debian Docker image '
 #  sudo docker pull fluent/fluentd:edge-debian
 #
-#  /* Pulling down mysql:5.7 Docker image */
+#  : ' Pulling down mysql:5.7 Docker image '
 #  sudo docker pull mysql:5.7
 #
-#  /* Pulling down nginx:latest Docker image */
+#  : ' Pulling down nginx:latest Docker image '
 #  sudo docker pull nginx
 {% endhighlight %}
 
@@ -210,7 +210,7 @@ So, Let me create MongoDB container based by downloaded 'mongo' Docker image.
 </p>
 
 {% highlight ruby linenos %}
-#  /*  Create mongoDB Container and Run  */
+#  : ' Create mongoDB Container and Run  '
 #  sudo docker run -d --name mongodb --hostname mongodb \
 #                     --publish 192.30.1.4:27017:27017 \
 #                     -e MONGO_INITDB_ROOT_USERNAME=root \
@@ -233,10 +233,10 @@ If the container is running successfully, you can connect to the tcp/27017 port 
 </p>
 
 {% highlight ruby linenos %}
-#  /*  Check the mongo container is running  */
+#  : ' Check the mongo container is running  '
 #  sudo docker container ls -a --filter "name=mongodb" | grep Up
 #
-#  /*  Check the mongodb port open - tcp/27017  */
+#  : ' Check the mongodb port open - tcp/27017  '
 #  curl -v telnet://192.30.1.4:27017
 {% endhighlight %}
 
@@ -247,11 +247,11 @@ You can connect to the MongoDB Shell by executing command below.
 </p>
 
 {% highlight ruby linenos %}
-#  /*  Connect to MongoDB container terminal  */
+#  : ' Connect to MongoDB container terminal  '
 #  sudo docker exec -it mongodb /bin/bash
 #  
 #  (Prompt will be changed)
-#  /*  Connect to MongoDB Shell in container  */
+#  : ' Connect to MongoDB Shell in container  '
 #  mongosh mongodb://127.0.0.1:27017 -u root -p password
 {% endhighlight %}
 
@@ -273,23 +273,23 @@ I will set the name of the database as 'logs'.
 </p>
 
 {% highlight ruby linenos %}
-#  /*  create database  */
+#  : ' Create database  '
 #  use logs
 #
 #  (Prompt will be changed to 'logs')
-#  /*  create new user to 'logs' database
+#  : ' Create new user to 'logs' database
 #  db.createUser({
 #    user: "root",
 #    pwd: "password", 
 #    roles: [{ role: "readWrite", db: "logs" }]
 #  })
 # 
-#  /* Check new user is created.
+#  : ' Check new user is created.
 #  db.getUsers()
 {% endhighlight %}
 
 {% highlight ruby %}
-#  /* you can use passwordPrompt() instead of plain password "password".
+#  * You can use passwordPrompt() instead of plain password "password".
 {% endhighlight %}
 
 ![img.png](../../../assets/imgs/docker/advanced%20protocols/how-to-store-log-container-log-on-mongoDB-with-fluentd-container/img10.png)
@@ -307,7 +307,7 @@ First, Check the fluent/fluentd:edge-debian image is downloaded and stored on yo
 </p>
 
 {% highlight ruby linenos%}
-#  /*  Check fluent/fluentd:edge-debian image on your machine  */
+#  : ' Check fluent/fluentd:edge-debian image on your machine  '
 #  sudo docker images --filter "reference=fluent/fluentd:edge-debian"
 {% endhighlight %}
 
@@ -317,13 +317,13 @@ Inside the folder, create file named' Dockerfile' to build a new fluentd equippi
 </p>
 
 {% highlight ruby linenos %}
-#  /*  Creating empty folder and move to it.  */
+#  : ' Creating empty folder and move to it.  '
 #  sudo mkdir fluentd; cd fluentd
 #
-#  /*  Creating file named 'Dockerfile'  */
+#  : ' Creating file named 'Dockerfile'  '
 #  touch Dockerfile
 #
-#  /*  Editing 'Dockerfile'  */
+#  : ' Editing 'Dockerfile'  '
 #  vi Dockerfile
 {% endhighlight %}
 
@@ -333,7 +333,7 @@ Refer to the code below
 </p>
 
 {% highlight ruby linenos %}
-#  /*  Dockerfile to create new fluentd image  */
+#  : ' Dockerfile to create new fluentd image  '
 #  FROM fluent/fluentd:edge-debian
 #
 #  USER root
@@ -341,8 +341,7 @@ Refer to the code below
 #  RUN apt-get update && \
 #      apt-get install -y build-essential libcurl4-gnutls-dev && \
 #      apt-get clean && \
-#      rm -rf /var/lib/apt/lists/*
-#
+#      rm -rf /var/lib/apt/lists: '#
 #  RUN fluent-gem install fluent-plugin-mongo
 #  
 #  USER fluent
@@ -369,10 +368,10 @@ The host machine does not have this file yet, so just create file at the path wh
 </p>
 
 {% highlight ruby linenos %}
-#  /*  Creating file named 'fluentd.conf'  */
+#  : ' Creating file named 'fluentd.conf'  '
 #  touch fluentd.conf
 #
-#  /*  Edit fluentd.conf  */
+#  : ' Edit fluentd.conf  '
 #  <source>
 #    @type forward
 #    port 24224 
@@ -405,7 +404,7 @@ Move to the folder containing 'Dockefile' and 'fluentd.conf' and execute image b
 </p>
 
 {% highlight ruby linenos %}
-#  /*  Build new fluentd image containing mongodb plug-in  */
+#  : ' Build new fluentd image containing mongodb plug-in  '
 #  sudo docker build -t fluentd-mongo:1.0 .
 {% endhighlight %}
 
@@ -420,7 +419,7 @@ Now, run the newly created image with command below.
 </p>
 
 {% highlight ruby linenos %}
-#  /*  Run fluentd images with mongodb plug-in  */
+#  : ' Run fluentd images with mongodb plug-in  '
 #  sudo docker run -d --name fluentd --hostname fluentd \
 #                     --publish 192.30.1.4:24224:24224  \
 #                     --volume /root/docker/fluentd/fluentd.conf:/fluentd/etc/fluentd.conf \
@@ -442,7 +441,7 @@ After running container, check the fluentd containers log by 'docker logs' comma
 </p>
 
 {% highlight ruby linenos %}
-#  /*  Check the fluentd container log  */
+#  : ' Check the fluentd container log  '
 #  sudo docker logs fluentd
 {% endhighlight %}
 
@@ -462,15 +461,15 @@ Before doing that, make sure that there is any database name 'log' on Mongo DB C
 </p>
 
 {% highlight ruby linenos %}
-#  /*  Connect to mongo container's terminal'  */
+#  : ' Connect to mongo container's terminal'  '
 #  sudo docker exec -it mongodb /bin/bash
 #
 #  (Prompt will be changed)
-#  /*  Connect to MongoDB Shell  */
+#  : ' Connect to MongoDB Shell  '
 #  mongosh mongodb://127.0.0.1:27017 -u root -p password
 # 
 #  (Prompt will be changed)
-#  /*  show all database in MongoDB container  */
+#  : ' show all database in MongoDB container  '
 #  show dbs;
 {% endhighlight %}
 
@@ -488,7 +487,7 @@ At the first time the mongodb recognise the forwarded log, it will create databa
 </p>
 
 {% highlight ruby linenos %}
-#  /#  Run 'mysql' container with log sending setting.
+#  : ' Run 'mysql' container with log sending setting. '
 #  sudo docker run -d --name mysql --hostname mysql \
 #                     --log-driver fluentd \
 #                     --log-opt fluentd-address=192.30.1.4:24224 \
@@ -496,7 +495,7 @@ At the first time the mongodb recognise the forwarded log, it will create databa
 #                     -e MYSQL_ROOT_PASSWORD=password \
 #                     mysql:5.7
 #  
-#  /#  Run 'nginx' container with log sending setting.
+#  : ' Run 'nginx' container with log sending setting. '
 #  sudo docker run -d --name nginx --hostname nginx \
 #                     --log-driver fluentd \
 #                     --log-opt fluentd-address=192.30.1.4:24224 \
