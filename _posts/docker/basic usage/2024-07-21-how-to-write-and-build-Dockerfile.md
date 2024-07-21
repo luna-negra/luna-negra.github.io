@@ -1,6 +1,6 @@
 ---
 title: 0002. How to Write and Build Dockerfile
-date: "2024-07-20 22:07:00 +0900"
+date: "2024-07-23 22:07:00 +0900"
 edited: 
 tags:
   - docker container
@@ -123,8 +123,8 @@ Let me run my new image with command below.
 I successfully made a new django image and there is no server issue.
 Now, let's assume that we have to change massive structure in our new container. 
 We can do it by accessing our container, adding, removing some files, doing some job and committing that container to new image as I have shown at the header of this post.
-However, this job make a new image be heavy in its size, because changes in docker container will be added to the new container as a layer form.
-You can check it with command 'docker history [IMAGE_NAME:TAG]'
+However, this job make a new image be heavy in its size, because changes in docker container will be reflected to the new container as a layer form.
+You can see it with command 'docker history [IMAGE_NAME:TAG]'
 </p>
 
 ![img.png](../../../assets/imgs/docker/basic%20usage/how-to-write-and-build-Dockefile/img5.png)
@@ -154,7 +154,7 @@ Will the size of 'mydjango:1.1" be lighter than 'mydjango:1.0'?
 ![img.png](../../../assets/imgs/docker/basic%20usage/how-to-write-and-build-Dockefile/img6.png)
 
 <p>
-The size of new image is not decreased, because new layer just added to the previous image even thought the files on the container are removed.
+The size of new image is not decreased, because new layer is just added to the previous image even thought the files on the container are removed.
 </p>
 
 ![img.png](../../../assets/imgs/docker/basic%20usage/how-to-write-and-build-Dockefile/img7.png)
@@ -166,16 +166,73 @@ Also, it is impossible to remember all procedures even we've done a week ago, so
 
 <p>
 Docker can build images automatically by reading the 'instructions' from a Dockerfile.
-With Dockerfile, we can edit instructions to build a new image only from the official images so our new image have less chance to be 'obesity'.
+With Dockerfile, we can edit instructions to build a new image only from the official images so our new image have less chance to become 'obesity'.
 </p>
 
 
 <br><br>
 ## <span id="ctn2">II. Dockefile Syntax</span>
 <p>
-
+Dockerfile is a kind of scripts. But it can be run with only docker, So syntax of dockerfile is quite a different from bash or other programming language.
+Dockerfile is consist of pairs of 'instruction' and 'argument'. 'instruction' means the work type that docker should do, and 'argument' is like a materials.
 </p>
 
+<p>
+Even thought there are so many 'instruction' keyword, I will show some 'instruction' that is frequently used.
+</p>
+
+<p>
+  <table>
+    <tr>
+      <td style="width: 150px;">* FROM</td>
+      <td>Basic docker image to create new image.</td>
+    </tr>
+    <tr>
+      <td>* LABEL</td>
+      <td>Record metadata for new container such as author or purpose etc.</td>
+    </tr>
+    <tr>
+      <td>* RUN</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>* CMD</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>* EXPOSE</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>* VOLUME</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>* WORKDIR</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>* USER</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>* ADD</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>* COPY</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>* ENV</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>* ENTRYPOINT</td>
+      <td></td>
+    </tr>
+  </table>
+</p>
 
 <br><br>
 ## <span id="ctn3">III. Example</span>
