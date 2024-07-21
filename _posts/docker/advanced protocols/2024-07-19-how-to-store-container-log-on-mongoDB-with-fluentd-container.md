@@ -12,7 +12,17 @@ categories:
   - advanced protocols
 ---
 
-## Preview
+<fieldset>
+<legend> Content </legend>
+<a href="#ctn1">I. Preview</a><br>
+<a href="#ctn2">II. Fluentd</a><br>
+<a href="#ctn3">III. Protocols</a><br>
+<a href="#ctn4">IV. References</a><br>
+</fieldset>
+
+
+
+## <span id="ctn1">I. Preview </span>
 <p>
 If you have several Docker containers running on your own server and these containers are somehow important,
 you have to monitor all containers to prevent your containers from being stopped suddenly. 
@@ -63,7 +73,7 @@ So, If these logs are required to be analysed, somebody has to make some code to
 </p>
 
 <br><br>
-## Fluentd
+## <span id="ctn2">II. Fluentd </span>
 <p>
 Fluentd is an open source software to unify different types of logs,
 so it is widely used for collecting and unifying data as well as logs.
@@ -81,9 +91,9 @@ In this post, I will show how to store all container logs on NoSQL - with MongoD
 </p>
 
 <br><br>
-## Protocols - To store unified container's log on NoSQL database
+## <span id="ctn3">III. Protocols - To store unified container's log on NoSQL database </span>
 <fieldset>
-<labels>[ Summary ]</labels><br>
+<legend> Summary </legend>
 <a href="#prtc1">1. Test Environment</a><br>
 <a href="#prtc2">2. Architecture</a><br>
 <a href="#prtc3">3. Prerequisite</a><br>
@@ -526,11 +536,19 @@ Access the mongodb shell again, see the data accumulated in the 'logs.container'
 
 
 <br><br>
-## Refernces
+## <span id="ctn4">IV. References</span>
 <p>
--  <a href="https://en.wikipedia.org/wiki/Fluentd" target="_blank">https://en.wikipedia.org/wiki/Fluentd</a><br>
--  <a href="https://docs.docker.com/config/containers/logging/fluentd/#usage" target="_blank">https://docs.docker.com/config/containers/logging/fluentd/#usage</a><br>
--  <a href="https://www.mongodb.com/docs/manual/reference/method/db.createUser/" target="_blank">https://www.mongodb.com/docs/manual/reference/method/db.createUser/</a><br>
+  <ul>
+    <li>
+      <a href="https://en.wikipedia.org/wiki/Fluentd" target="_blank">https://en.wikipedia.org/wiki/Fluentd</a><br>
+    </li>
+    <li>
+      <a href="https://docs.docker.com/config/containers/logging/fluentd/#usage" target="_blank">https://docs.docker.com/config/containers/logging/fluentd/#usage</a><br>
+    </li>  
+    <li>
+      <a href="https://www.mongodb.com/docs/manual/reference/method/db.createUser/" target="_blank">https://www.mongodb.com/docs/manual/reference/method/db.createUser/</a><br>
+    </li>
+  </ul>
 </p>
 
 
