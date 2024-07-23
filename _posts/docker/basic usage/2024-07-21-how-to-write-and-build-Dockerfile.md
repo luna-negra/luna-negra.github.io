@@ -1,7 +1,7 @@
 ---
 title: 0002. How to Write and Build Dockerfile
 date: "2024-07-23 12:12:00 +0900"
-edited: 
+edited: "2024-07-23 12:34:00 +0900"
 tags:
   - docker container
   - Dockerfile
@@ -322,6 +322,14 @@ Now, Let me build a new django image from my Dockerfile by executing command bel
 {% endhighlight %}
 
 ![img.png](../../../assets/imgs/docker/basic%20usage/how-to-write-and-build-Dockefile/img9.png)
+
+<p>
+The new django image has less size than the image - mydjango:1.0 - which was manually created. 
+The reason is simple that Dockerfile only has a less 'instruction' so it was reflected on the image with less layer.
+</p>
+
+![img.png](../../../assets/imgs/docker/basic%20usage/how-to-write-and-build-Dockefile/img14.png)
+![img.png](../../../assets/imgs/docker/basic%20usage/how-to-write-and-build-Dockefile/img15.png)
 
 <p>
 The new django image was created without any error, so I can run it with 'docker run' command.
