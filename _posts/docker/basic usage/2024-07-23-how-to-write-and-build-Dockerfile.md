@@ -1,12 +1,12 @@
 ---
 title: 0002. How to Write and Build Dockerfile
 date: "2024-07-23 12:12:00 +0900"
-edited: "2024-07-23 12:34:00 +0900"
+edited: "2024-07-23 13:05:00 +0900"
 tags:
   - docker container
+  - docker build
   - Dockerfile
-  - python django
-  - postgresql
+  - django
 categories:
   - docker
   - basic usage
