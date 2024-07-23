@@ -182,6 +182,14 @@ td.article_info_value {
     padding-left: 10px;
 }
 
+table.enumerate > tbody > tr > td {
+    border-bottom: solid;
+    border-width: 1px;
+}
+
+table.enumerate > tbody > tr.last > td {
+    border-bottom: none;
+}
 
 div#article_content {
     font-size: 15pt;

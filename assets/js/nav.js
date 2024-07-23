@@ -27,6 +27,10 @@ document.addEventListener("DOMContentLoaded", function ()
                                         span.innerHTML += ">";
                                         i += 4;
                                     }
+                                    else {
+                                        span.innerHTML += "&";
+                                        i += 1;
+                                    }
                                 }
                                 else
                                 {

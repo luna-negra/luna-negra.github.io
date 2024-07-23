@@ -1,6 +1,6 @@
 ---
 title: 0002. How to Write and Build Dockerfile
-date: "2024-07-23 22:07:00 +0900"
+date: "2024-07-23 12:12:00 +0900"
 edited: 
 tags:
   - docker container
@@ -17,7 +17,7 @@ categories:
 <legend> Content </legend>
 <a href="#ctn1">I. Preview</a><br>
 <a href="#ctn2">II. Dockerfile Syntax</a><br>
-<a href="#ctn3">III. Example</a><br>
+<a href="#ctn3">III. Example of Dockerfile to Create Django Image</a><br>
 <a href="#ctn4">IV. Reference</a><br>
 </fieldset>
 
@@ -85,7 +85,7 @@ Then, let me make a new django container manually. I will use image 'python:3.12
 {% endhighlight %}
 
 <p>
-If you follow my cookbook above, you can see the django's green rocket when you access to django's website.
+If you follow my 'cookbook' above, you can see the django's green rocket when you access to django's website.
 </p>
 
 ![img.png](../../../assets/imgs/docker/basic%20usage/how-to-write-and-build-Dockefile/img2.png)
@@ -182,7 +182,7 @@ Even thought there are so many 'instruction' keyword, I will show some 'instruct
 </p>
 
 <p>
-  <table>
+  <table class="enumerate">
     <tr>
       <td style="width: 150px;">* FROM</td>
       <td>Basic docker image to create new image.</td>
@@ -193,52 +193,169 @@ Even thought there are so many 'instruction' keyword, I will show some 'instruct
     </tr>
     <tr>
       <td>* RUN</td>
-      <td></td>
+      <td>Enumerate the command that will be executed during when the new image is created.<br>
+          It effects same as 'docker exec' command.</td>
     </tr>
     <tr>
       <td>* CMD</td>
-      <td></td>
+      <td>Evince the command that will be executed when the container was created from the image and run.<br>
+          It effects same as 'docker exec' command but can be used only once in one Dockerfile.<br>
+          Therefore, it is generally used to execute 'service start command'.</td>
     </tr>
     <tr>
       <td>* EXPOSE</td>
-      <td></td>
+      <td>Assign the container's service port. It does not connect container port and host port as a NAT.<br>
+          But it tells that which port is intended to be published to person who are about to use the container.</td>
     </tr>
     <tr>
       <td>* VOLUME</td>
-      <td></td>
+      <td>Connect container's path to the docker volume folder on the host. Its argument should be JSON Array with "double-quote" or plain string path / docker volume name .<br>
+          it make results same as '--volume' option<br>
+          ex) VOLUME /test1 /test2   ==   --volume [DOCKER_VOLUME1]:[CONTAINER_NAME}:/test1 --volume [DOCKER_VOLUME2]:[CONTAINER_NAME}:/test2 <br>
+          ex) VOLUME ["/test1", "/test2"]  == --volume [DOCKER_VOLUME1]:[CONTAINER_NAME}:/test1 --volume [DOCKER_VOLUME2]:[CONTAINER_NAME}:/test2 </td>
     </tr>
     <tr>
       <td>* WORKDIR</td>
-      <td></td>
+      <td>Assign the working path on the image. If you execute command with 'RUN' instruction after declare 'WORKDIR',<br>
+          'RUN' instruction execute its argument at the path 'WORKDIR'</td>
     </tr>
     <tr>
       <td>* USER</td>
-      <td></td>
+      <td>Changing OS Username of image.</td>
+    </tr>
+    <tr>
+      <td>* Copy</td>
+      <td>Copy the file on the host to the image's path.</td>
     </tr>
     <tr>
       <td>* ADD</td>
-      <td></td>
+      <td>Copy the file on the host to the image's path <br>
+          but it can also extract the compressed files or copy all files from a remote url.</td>
     </tr>
-    <tr>
-      <td>* COPY</td>
-      <td></td>
-    </tr>
-    <tr>
+    <tr class="last">
       <td>* ENV</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>* ENTRYPOINT</td>
-      <td></td>
+      <td>Set the environmental variables on the image</td>
     </tr>
   </table>
 </p>
 
 <br><br>
-## <span id="ctn3">III. Example</span>
+## <span id="ctn3">III. Example of Dockerfile to Create Django Image</span>
 <p>
-
+Refer to the procedure on the '<a href="#ctn1">Preview</a>' section, let me write down a Dockerfile to create new Django image.
+With Dockerfile, I will make one docker volume so that the web contents on the container will be backed up at the host in order to conserve data.
 </p>
+
+<p>
+First I create an empty forder on the host to store docker contex. 
+After that I create 'Dockerfile' in it. 
+</p>
+
+{% highlight ruby linenos %}
+#  : " Make empty folder and move into it "
+#  sudo mkdir django
+#  cd django
+#
+#  : " Create Dockerfile and open it with vi"
+#  touch Dockerfile
+#  vi Dockerfile
+{% endhighlight %}
+
+<p>
+In Dockerfile, write down the procedure to create django images with Dockerfile 'instruction' and 'arguement'
+</p>
+
+{% highlight ruby linenos %}
+#  : " Assign basic image to use"
+#  FROM python:3.12
+#
+#  : " Assign working directory on the image.
+#    If the path not exist, docker automatically create folder and assign it as a WORKDIR."
+#  WORKDIR /django/
+#
+#  : " Upgrade pip and install django version 4.1.13"
+#  RUN pip install --upgrade pip 
+#  RUN pip install django==4.1.13
+#  
+#  : " edit 'ALLOWED_HOSTS' on 'settings.py' file. 
+#    'settings.py' files are created on the path '{project_name}/{project_name}'/"
+#  RUN sed -i "s/ALLOWED_HOSTS = \[\]/ALLOWED_HOSTS = \['\*'\]/" ./myproject/myproject/settings.py
+#
+#  : " Create new docker volume and connect it to the new container's django project folder"
+#  : " In this process, I did not install vim package on my django image so hvae to make a volume on the host."
+#  : " This instruction is optional because I can create volume in command 'docker run' with '--volume' option."
+#  VOLUME ["/django/myproject/"]
+#
+#  : " Assign service port number which new django container is serving."
+#  EXPORT 8000
+#  
+#  : " Relocate WORKDIR to create django app."
+#  WORKDIR './myproject'
+#
+#  : " Assign commands to start django server when the container is started."
+#  CMD python /django/myproject/manage.py runserver 0.0.0.0:8000
+{% endhighlight %}
+
+{% highlight ruby %}
+#  *  Django service must be start with the host 0.0.0.0 or host machine's IP because container's ip is not fixed.
+#  *  As a same reason, 'ALLOWED_HOSTS' in 'settings.py' file must be changed as ['*']
+{% endhighlight %}
+
+<p>
+The contents of 'Dockerfile' will be shown as below.
+</p>
+
+![img.png](../../../assets/imgs/docker/basic%20usage/how-to-write-and-build-Dockefile/img8.png)
+
+<p>
+It is better to aggregate arguments of instruction 'RUN' with '&&' and '\', 
+because each RUN create each image layer so the new image have some possibility to be heavy.
+</p>
+
+<p>
+Now, Let me build a new django image from my Dockerfile by executing command below.
+</p>
+
+{% highlight ruby linenos %}
+#  : "Build docker image from Dockerfile."
+#  docker build -t django:1.0 .
+{% endhighlight %}
+
+![img.png](../../../assets/imgs/docker/basic%20usage/how-to-write-and-build-Dockefile/img9.png)
+
+<p>
+The new django image was created without any error, so I can run it with 'docker run' command.
+When the container is run, you can connect to the django's default web page.
+</p>
+
+{% highlight ruby linenos %}
+#  : "Run container from the new django image"
+#  docker run -d --name django --hostname django \
+#                --publish 192.30.1.4:8000:8000 \
+#                django:1.0
+{% endhighlight %}
+
+![img.png](../../../assets/imgs/docker/basic%20usage/how-to-write-and-build-Dockefile/img10.png)
+
+<p>
+As you know, I did not install vim on the django container, so I have to change the django settings or add files via 'docker volume'.
+Without connecting to the container, I can manage the folders and files related with django at the host machine. 
+If you change the settings.py, you can apply it just by restarting django container.
+</p>
+
+![img.png](../../../assets/imgs/docker/basic%20usage/how-to-write-and-build-Dockefile/img11.png)
+![img.png](../../../assets/imgs/docker/basic%20usage/how-to-write-and-build-Dockefile/img12.png)
+
+<p>
+Be advised that you can fild container's docker volume by command 'docker container inspect'.
+</p>
+
+{% highlight ruby linenos %}
+#  : " Print detail information about docker conatiner."
+#  docker container inspect [CONTAINER_NAME]
+{% endhighlight %}
+
+![img.png](img13.png)
 
 
 <br><br>
@@ -247,6 +364,12 @@ Even thought there are so many 'instruction' keyword, I will show some 'instruct
   <ul>
     <li>
       <a href="https://docs.docker.com/reference/dockerfile/" target="_blank">https://docs.docker.com/reference/dockerfile/</a>
+    </li>
+    <li>
+      <a href="https://docs.docker.com/storage/volumes/" target="_blank">https://docs.docker.com/storage/volumes/</a>
+    </li>
+    <li>
+      <a href="https://phoenixnap.com/kb/docker-add-vs-copy" target="_blank">https://phoenixnap.com/kb/docker-add-vs-copy</a>
     </li>
   </ul>
 </p>
