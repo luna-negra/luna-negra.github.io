@@ -355,8 +355,7 @@ Be advised that you can fild container's docker volume by command 'docker contai
 #  docker container inspect [CONTAINER_NAME]
 {% endhighlight %}
 
-![img.png](img13.png)
-
+![img.png](../../../assets/imgs/docker/basic%20usage/how-to-write-and-build-Dockefile/img13.png)
 
 <br><br>
 ## <span id="ctn4">IV. Reference</span>
