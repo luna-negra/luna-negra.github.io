@@ -318,7 +318,7 @@ Now, Let me build a new django image from my Dockerfile by executing command bel
 
 {% highlight ruby linenos %}
 #  : "Build docker image from Dockerfile."
-#  docker build -t django:1.0 .
+#  sudo docker build -t django:1.0 .
 {% endhighlight %}
 
 ![img.png](../../../assets/imgs/docker/basic%20usage/how-to-write-and-build-Dockefile/img9.png)
@@ -330,9 +330,9 @@ When the container is run, you can connect to the django's default web page.
 
 {% highlight ruby linenos %}
 #  : "Run container from the new django image"
-#  docker run -d --name django --hostname django \
-#                --publish 192.30.1.4:8000:8000 \
-#                django:1.0
+#  sudo docker run -d --name django --hostname django \
+#                     --publish 192.30.1.4:8000:8000 \
+#                     django:1.0
 {% endhighlight %}
 
 ![img.png](../../../assets/imgs/docker/basic%20usage/how-to-write-and-build-Dockefile/img10.png)
@@ -352,7 +352,7 @@ Be advised that you can fild container's docker volume by command 'docker contai
 
 {% highlight ruby linenos %}
 #  : " Print detail information about docker conatiner."
-#  docker container inspect [CONTAINER_NAME]
+#  sudo docker container inspect [CONTAINER_NAME]
 {% endhighlight %}
 
 ![img.png](../../../assets/imgs/docker/basic%20usage/how-to-write-and-build-Dockefile/img13.png)
