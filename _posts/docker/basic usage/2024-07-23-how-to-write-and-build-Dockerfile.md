@@ -1,7 +1,7 @@
 ---
 title: 0002. How to Write and Build Dockerfile
 date: "2024-07-23 12:12:00 +0900"
-edited: "2024-07-23 13:05:00 +0900"
+edited: "2024-07-25 00:03:00 +0900"
 tags:
   - docker container
   - docker build
@@ -25,7 +25,7 @@ categories:
 <br><br>
 ## <span id="ctn1">I. Preview</span>
 <p>
-Although he official docker hub website offer so many containers, sometimes we have to make our own container from a basic image.
+Although the official docker hub website offer so many containers, sometimes we have to make our own container from a basic image.
 In order to this, we can run basic docker images, install applications that we need in the container and commit that image to create new image.
 </p>
 
