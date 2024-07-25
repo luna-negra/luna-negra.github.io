@@ -1,6 +1,6 @@
 ---
 title: 0004. How to Own My Docker Hub Registry
-date: "2024-07-26 22:00:00 +0900"
+date: "2024-07-28 22:00:00 +0900"
 edited:
 tags:
   - docker hub
@@ -8,7 +8,7 @@ tags:
   - applying tls
 categories:
   - docker
-  - basic usage
+  - advanced protocols
 ---
 
 
