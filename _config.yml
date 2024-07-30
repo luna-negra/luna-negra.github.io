@@ -17,7 +17,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Pavel's IT Garage # enter your blog name without quote.
+title: IT Garage in My Backyard # enter your blog name without quote.
 email: blitzangreiffer@gmail.com # enter your email address without quote.
 description:  # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
