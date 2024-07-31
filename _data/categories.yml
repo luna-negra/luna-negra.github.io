@@ -1,8 +1,8 @@
 - category: about
   sub_category: []
 
-- category: linux
-  sub_category: ['basic usage']
-
 - category: docker
   sub_category: ['basic usage', 'advanced protocols', 'trouble shooting']
+
+- category: linux
+  sub_category: ['basic usage']
