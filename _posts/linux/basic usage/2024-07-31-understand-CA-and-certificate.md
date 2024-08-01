@@ -1,7 +1,7 @@
 ---
 title: 0005. Understand CA and Certificate
 date: "2024-07-31 16:24:00 +0900"
-edited: 
+edited: "2024-08-01 11:21:00 +0900"
 tags:
   - Certificate Authority
   - private key
@@ -295,7 +295,7 @@ Browser does not have my root CA in a trusted CA list, so browser tells me that 
 ![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img22.png)
 
 <p>
-Also, call the website info with call from another linux, I can not get the information 
+Also, call the website info with 'curl' command from another linux, I can not get the information 
 because the host can not trust the server's public key.
 </p>
 
