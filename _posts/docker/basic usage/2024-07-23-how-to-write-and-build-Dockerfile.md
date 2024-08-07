@@ -1,7 +1,7 @@
 ---
 title: 0002. How to Write and Build Dockerfile
 date: "2024-07-23 12:12:00 +0900"
-edited: "2024-08-07 00:03:00 +0900"
+edited: "2024-08-07 17:03:00 +0900"
 tags:
   - docker container
   - docker build
