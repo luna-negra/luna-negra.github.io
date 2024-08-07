@@ -1,6 +1,9 @@
 - category: about
   sub_category: []
 
+- category: django
+  sub_category: ['basic usage', 'advanced protocols', 'trouble shooting']
+
 - category: docker
   sub_category: ['basic usage', 'advanced protocols', 'trouble shooting']
 

@@ -276,6 +276,7 @@ In Dockerfile, write down the procedure to create django images with Dockerfile 
 #  : " Upgrade pip and install django version 4.1.13"
 #  RUN pip install --upgrade pip 
 #  RUN pip install django==4.1.13
+#  RUN django-admin startproject myproject
 #  
 #  : " edit 'ALLOWED_HOSTS' on 'settings.py' file. 
 #    'settings.py' files are created on the path '{project_name}/{project_name}'/"
