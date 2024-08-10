@@ -381,6 +381,6 @@ Now, you can push and pull your own image via unknown TLS port.
     <li><a href="https://distribution.github.io/distribution/recipes/nginx/" target="_blank">https://distribution.github.io/distribution/recipes/nginx/</a></li>
     <li><a href="https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/" target="_blank">https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/</a></li>
     <li><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html" target="_blank">https://nginx.org/en/docs/http/ngx_http_core_module.html</a></li>
-    <li><a href="https://github.com/distribution/distribution/issues/2862#issuecomment-617576885" target="_blank">https://github.com/distribution/distribution/issues/2862#issuecomment-617576885</a></li>
+    <li><a href="https://github.com/distribution/distribution/issues/2862#issuecomment-571504391" target="_blank">https://github.com/distribution/distribution/issues/2862#issuecomment-571504391</a></li>
   </ul>
 </p>
