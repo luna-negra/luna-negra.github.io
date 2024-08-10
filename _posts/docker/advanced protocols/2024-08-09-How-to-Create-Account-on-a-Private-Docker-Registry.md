@@ -17,7 +17,8 @@ categories:
 <legend> Content </legend>
 <a href="#ctn1"> I. Preview </a><br>
 <a href="#ctn2"> II. Set Authentication </a><br>
-<a href="#ctn3"> III. References </a><br>
+<a href="#ctn3"> III. Changing TLS Port Number </a><br>
+<a href="#ctn4"> IV. References </a><br>
 </fieldset>
 
 <br><br>
@@ -285,16 +286,101 @@ If you can get the result of calling API, you can login to your docker registry.
 The authentication process is executed by nginx container, so the registry container can ease its workload. 
 </p>
 
-![img.png](../../../assets/imgs/docker/advanced%20protocols/how_to_create_account_on_a_private_docker_registry/img13.png)
 
 
 <br><br>
-## <span id="ctn3">III. References</span>
+## <span id="ctn3">III. Changing TLS Port Number </span>
+<p>
+In the example above, I used default HTTPS port. It could make some collision with web port and 
+some readers of this post want to change TLS port number. However, it has some problem.
+</p>
+
+![img.png](../../../assets/imgs/docker/advanced%20protocols/how_to_create_account_on_a_private_docker_registry/img13.png)
+
+<p>
+There are issues that docker can not connect to the private TLS port well and only few image layers are uploaded.
+The reason of this problem is on the Nginx proxy container.
+</p><br>
+
+![img.png](../../../assets/imgs/docker/advanced%20protocols/how_to_create_account_on_a_private_docker_registry/img14.png)
+
+<br>
+<p>
+When you just call the registry's API via nginx proxy, nginx proxy do your request with checking authentication.
+The nginx return the result of API Result after getting the result from the registry.
+</p>
+
+<p>
+In contrast, pushing and pulling images are quite a different. 
+Once you push your image via nginx, nginx does not change the registry port number in a command to registry's https port.
+In addition, registry container only listen the incoming traffic via 0.0.0.0:443, so it does not recognise about 'https' protocol.
+</p><br>
+
+![img.png](../../../assets/imgs/docker/advanced%20protocols/how_to_create_account_on_a_private_docker_registry/img15.png)
+
+<br>
+<p>
+For this reason, we have to do several things to change TLS port on registry when you use proxy server.
+First, it is crucial to match the registry's TLS port and Docker host's access port number. Second, 
+add environmental variables 'HTTP_HOST' on the registry container and make the registry container recognise the https.
+</p>
+
+{% highlight ruby linenos %}
+#  : "Create and run registry container"
+#  sudo docker run -d --name registry --hostname registry \
+#                     ...
+#                     -e REGISTRY_HTTP_HOST=https://192.30.1.4:44301 \
+#                     ...
+{% endhighlight %}
+
+<p>
+Before running nginx proxy container, do not forget to edit the nginx.conf file.
+</p>
+
+{% highlight ruby linenos %}
+#  : " nginx.conf"
+#  
+#  ...
+#  http {
+#    server {
+#           ...
+#           proxy_pass https://myregistry:44301;
+#           ...
+#        }
+#     }
+#  ...
+{% endhighlight %}
+
+
+
+<p>
+Now, Let me create and run nginx proxy container with accessing port 44301.
+</p>
+
+{% highlight ruby linenos %}
+#  : " Create and run nginx proxy container"
+#  sudo docker run -d --name nginx_auth_proxy --hostname nginx_auth_proxy \
+#                     ...
+#                     --publish 192.30.1.4:44301:443 \
+#                     ...
+{% endhighlight %}
+
+![img.png](../../../assets/imgs/docker/advanced%20protocols/how_to_create_account_on_a_private_docker_registry/img16.png)
+
+<p>
+Now, you can push and pull your own image via unknown TLS port.
+</p>
+
+![img.png](../../../assets/imgs/docker/advanced%20protocols/how_to_create_account_on_a_private_docker_registry/img17.png)
+
+<br><br>
+## <span id="ctn4">IV. References</span>
 <p>
   <ul>
     <li><a href="https://distribution.github.io/distribution/about/deploying/#restricting-access" target="_blank">https://distribution.github.io/distribution/about/deploying/#restricting-access</a></li>
     <li><a href="https://distribution.github.io/distribution/recipes/nginx/" target="_blank">https://distribution.github.io/distribution/recipes/nginx/</a></li>
     <li><a href="https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/" target="_blank">https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/</a></li>
     <li><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html" target="_blank">https://nginx.org/en/docs/http/ngx_http_core_module.html</a></li>
+    <li><a href="https://github.com/distribution/distribution/issues/2862#issuecomment-617576885" target="_blank">https://github.com/distribution/distribution/issues/2862#issuecomment-617576885</a></li>
   </ul>
 </p>
