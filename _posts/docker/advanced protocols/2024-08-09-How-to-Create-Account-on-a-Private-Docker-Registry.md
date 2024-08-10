@@ -1,7 +1,7 @@
 ---
 title: 0006. How to Create Account on a Private Docker Registry
 date: "2024-08-09 15:00:00 +0900"
-edited:
+edited: "2024-08-10 17:42:00 +0900"
 tags:
   - docker hub
   - private registry
@@ -211,6 +211,8 @@ Let me name the config file as 'nginx.conf' and locate it at the path where the 
 #       ssl_certificate_key /etc/nginx/conf.d/docker_key.pem;
 #       ssl_protocols TLSv1.1 TLSv1.2;
 #
+#       client_max_body_size 1G;
+#
 #       location / {
 #           auth_basic "Restricted Access";
 #           auth_basic_user_file /etc/nginx/registry_auth;
@@ -228,6 +230,8 @@ Let me name the config file as 'nginx.conf' and locate it at the path where the 
 {% highlight ruby %}
 #  * I will use nginx to connect to registry with registry's 443 port.
 #  * To use 'myregisry' at 'proxy_pass', attach option '--link' will be used when I run the container.
+#  * If the size of image is too large, your registry will show the error log 413,
+#    which means request entity is too large. To solve this issue, please add 'client_max_body_size 1g;'.
 {% endhighlight %}
 
 ![img.png](../../../assets/imgs/docker/advanced%20protocols/how_to_create_account_on_a_private_docker_registry/img9.png)
@@ -291,5 +295,6 @@ The authentication process is executed by nginx container, so the registry conta
     <li><a href="https://distribution.github.io/distribution/about/deploying/#restricting-access" target="_blank">https://distribution.github.io/distribution/about/deploying/#restricting-access</a></li>
     <li><a href="https://distribution.github.io/distribution/recipes/nginx/" target="_blank">https://distribution.github.io/distribution/recipes/nginx/</a></li>
     <li><a href="https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/" target="_blank">https://docs.nginx.com/nginx/admin-guide/basic-functionality/managing-configuration-files/</a></li>
+    <li><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html" target="_blank">https://nginx.org/en/docs/http/ngx_http_core_module.html</a></li>
   </ul>
 </p>
