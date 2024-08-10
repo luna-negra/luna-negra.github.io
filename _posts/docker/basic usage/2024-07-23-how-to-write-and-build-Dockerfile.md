@@ -1,7 +1,7 @@
 ---
 title: 0002. How to Write and Build Dockerfile
 date: "2024-07-23 12:12:00 +0900"
-edited: "2024-08-07 17:03:00 +0900"
+edited: "2024-08-10 15:56:00 +0900"
 tags:
   - docker container
   - docker build
@@ -288,7 +288,7 @@ In Dockerfile, write down the procedure to create django images with Dockerfile 
 #  VOLUME ["/django/myproject/"]
 #
 #  : " Assign service port number which new django container is serving."
-#  EXPORT 8000
+#  EXPOSE 8000
 #  
 #  : " Relocate WORKDIR to create django app."
 #  WORKDIR './myproject'
