@@ -1,7 +1,7 @@
 ---
 title: 0006. How to Create Account on a Private Docker Registry
 date: "2024-08-09 15:00:00 +0900"
-edited: "2024-08-10 17:42:00 +0900"
+edited: "2024-08-10 22:00:00 +0900"
 tags:
   - docker hub
   - private registry
