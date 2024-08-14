@@ -1,7 +1,7 @@
 ---
-title: 0005. Understand CA and Certificate
+title: 0005. Understanding CA and Certificate
 date: "2024-07-31 16:24:00 +0900"
-edited: "2024-08-01 11:21:00 +0900"
+edited: "2024-08-14 19:45:00 +0900"
 tags:
   - Certificate Authority
   - private key
@@ -31,7 +31,7 @@ Therefore a person in third party can not know what the communicators talk about
 In other words, if you send your data without encrypting, a possibility of revealing your important information would be high.
 </p>
 
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img1.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img1.png)
 
 <p>
 To prevent it, it is better to apply TLS and SSL on your server and make the application use it.
@@ -59,20 +59,20 @@ When the client initiates a communication, the client requests the server's publ
 The server send the newly created public key to the sender first.
 </p>
 
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img2.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img2.png)
 
 <p>
 If the client get the public key without issue, the client encrypts his or her data with public key before sending it.
 The server has a private key which is pair with public key, so can decrypt the client's data.
 </p>
 
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img3.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img3.png)
 
 <p>
 Even though a third one success to hijack the client's data, this data can not be shown because the third one does not have server's private key.
 </p>
 
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img4.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img4.png)
 
 
 <br><br>
@@ -84,7 +84,7 @@ The hacker is also able to make his or her own private key and public key.
 So if the hacker can take the client's first traffic packet, client will not get the server's public key but the hacker's one.
 </p>
 
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img5.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img5.png)
 
 <p>
 From the example above, we can know that there should be some verifying method whether the public key can be trusted one or not.
@@ -95,13 +95,13 @@ To solve this problem, There are a few of trusted CA - Certificate Authorization
 On your browser setting, you can see a list of trusted CA. 
 </p>
 
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img6.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img6.png)
 
 <p>When you visit unknown site and get a public key, 
 your browser verify that the public key is signed by trusted CA. If not, you can see the warning screen that tells you the certificate is not signed by trusted CA.
 </p>
 
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img7.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img7.png)
 
 
 <br><br>
@@ -131,8 +131,8 @@ This CA can grave a digital sign on public keys. If the CA are registered as a t
 TLS communication will be established between the client and the server.
 </p>
 
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img10.png)
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img11.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img10.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img11.png)
 
 <p>
 Let me make my own CA and register it as a trusted CA.
@@ -152,7 +152,7 @@ First The private key for CA must be created. You can get a private key for CA a
 #  *  the number at the end of the command should be 2^n.
 {% endhighlight %}
 
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img12.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img12.png)
 
 <p>
 Next, create a public key for CA from private key I generated.
@@ -171,7 +171,7 @@ All variables can be skipped except Common Name. Common name must be the IP or F
 #  ex) openssl req -x509 -new -sha256 -days 365 -key my_root_ca.key -out my_root_ca.pem
 {% endhighlight %}
 
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img13.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img13.png)
 
 <p>
 It is ready to register our new CA public key (certificate) as a trusted CA.
@@ -238,7 +238,7 @@ Then I will apply TLS apache2 with signed keys.
 In my Ubuntu server, there are apache2 service running and I can access the default website with HTTP protocol.
 </p>
 
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img18.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img18.png)
 
 <p>
 First, create a private key as below.
@@ -263,7 +263,7 @@ it requests CA to make a specific certificate and to sign on it. Create CSR file
 #  * Option must contain '-subj' option and it must have CN value of CA.
 {% endhighlight %}
 
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img19.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img19.png)
 
 <p>
 I have a CSR file now, so can make docker.crt file with signing root CA.
@@ -279,40 +279,40 @@ I have a CSR file now, so can make docker.crt file with signing root CA.
 Now, I have private and public key signed by my own CA for applying TLS. 
 </p>
 
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img20.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img20.png)
 
 <p>
 Let me apply private and public key on my apache2.
 </p>
 
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img21.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img21.png)
 
 <p>
 Now I can access the apache2's default site with HTTPS. Let me access the site from my Windows.
 Browser does not have my root CA in a trusted CA list, so browser tells me that the site contains some security unsafety.
 </p>
 
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img22.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img22.png)
 
 <p>
 Also, call the website info with 'curl' command from another linux, I can not get the information 
 because the host can not trust the server's public key.
 </p>
 
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img23.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img23.png)
 
 <p>
 This problem can be solved by adding CA root as a trusted one. 
 First with Linux, remote host does not have server's root CA in a trusted CA list, so it does not believe that the server's public key is safe.
 </p>
 
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img24.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img24.png)
 
 <p>
 Copy the server's CA root public key which did sign on domain.crt to the remote host, and register copied public key on the remote host as a trusted CA.
 </p>
 
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img25.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img25.png)
 
 
 
