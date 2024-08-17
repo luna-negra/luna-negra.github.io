@@ -1,6 +1,6 @@
 ---
 title: 0008. Create Template and Validate Input with Django Forms
-date: "2024-08-14 19:42:00 +0900"
+date: "2024-08-17 17:19:00 +0900"
 edited: 
 tags:
   - django 
