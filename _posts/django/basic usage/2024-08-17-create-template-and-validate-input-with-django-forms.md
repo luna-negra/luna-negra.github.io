@@ -34,7 +34,7 @@ I would like to create a simple website that users can send their personnel info
 so my website will have only 'index' view and index.html will be shown like below.
 </p>
 
-![img.png](../../../assets/imgs/django/basic%20usage/create-template-an-validate-input-with-django-forms/img1.png)
+![img.png](../../../assets/imgs/django/basic%20usage/create-template-and-validate-input-with-django-forms/img1.png)
 
 <p>
 The 'index' view will accept "GET" and "POST" communications so that the users can submit their data through the index view.
@@ -120,13 +120,13 @@ Once you finished migration, just write down the 'views.py' file's frame like be
 Last, I will create 'index.html' and locate it in templates forder.
 </p>
 
-![img.png](../../../assets/imgs/django/basic%20usage/create-template-an-validate-input-with-django-forms/img2.png)
+![img.png](../../../assets/imgs/django/basic%20usage/create-template-and-validate-input-with-django-forms/img2.png)
 
 <p>
 The result of all works will be displayed like below.
 </p>
 
-![img.png](../../../assets/imgs/django/basic%20usage/create-template-an-validate-input-with-django-forms/img3.png)
+![img.png](../../../assets/imgs/django/basic%20usage/create-template-and-validate-input-with-django-forms/img3.png)
 
 <p>
 Now, I can get a POST data at my views.py file with variable 'request'. Then, I can put them on my database file.
@@ -189,7 +189,7 @@ However the most awesome thing is that 'forms.py' file has function for validate
 With 'forms.py' file, it is easier to handle the views because you can hide the validating code at 'forms.py' file.
 </p>
 
-![img.png](../../../assets/imgs/django/basic%20usage/create-template-an-validate-input-with-django-forms/img4.png)
+![img.png](../../../assets/imgs/django/basic%20usage/create-template-and-validate-input-with-django-forms/img4.png)
 
 <p>
 According to this architecture, there should be a few fields in forms.py so created input tags would be transmitted to the 'views.py'.
@@ -248,7 +248,7 @@ each class can have a different fields.
 In this status, you can call the class 'MemberSaveForm' at the 'views.py'. When you print that object, you can see some HTML tags that produced by 'forms.py'.
 </p>
 
-![img.png](../../../assets/imgs/django/basic%20usage/create-template-an-validate-input-with-django-forms/img5.png)
+![img.png](../../../assets/imgs/django/basic%20usage/create-template-and-validate-input-with-django-forms/img5.png)
 
 <p>
 And once you send this object with context, you can see the input tags on your templates.
@@ -273,13 +273,13 @@ The 'index.html' file only contains approximately 10 lines of HTML Tags.
 Comparing to the previous 'index.html' file, the number of lines is significantly decreased.
 </p>
 
-![img.png](../../../assets/imgs/django/basic%20usage/create-template-an-validate-input-with-django-forms/img6.png)
+![img.png](../../../assets/imgs/django/basic%20usage/create-template-and-validate-input-with-django-forms/img6.png)
 
 <p>
 If there is no exceptions in files, you can see the input form at the browser.
 </p>
 
-![img.png](../../../assets/imgs/django/basic%20usage/create-template-an-validate-input-with-django-forms/img7.png)
+![img.png](../../../assets/imgs/django/basic%20usage/create-template-and-validate-input-with-django-forms/img7.png)
 
 
 
@@ -310,17 +310,17 @@ Now, let me get user's personnel input typed by user. To get these information, 
 #  * print(form) will print out the user's input on the terminal.
 {% endhighlight %}
 
-![img.png](../../../assets/imgs/django/basic%20usage/create-template-an-validate-input-with-django-forms/img8.png)
-![img.png](../../../assets/imgs/django/basic%20usage/create-template-an-validate-input-with-django-forms/img9.png)
+![img.png](../../../assets/imgs/django/basic%20usage/create-template-and-validate-input-with-django-forms/img8.png)
+![img.png](../../../assets/imgs/django/basic%20usage/create-template-and-validate-input-with-django-forms/img9.png)
 
 <p>
 This input data can also be transmitted to the form class. This class inherits django's Form class and that has some methods for validating.
 If you are using methods 'is_validate()' and 'clean()' after calling form class with 'data' arguments. 
 </p>
 
-![img.png](../../../assets/imgs/django/basic%20usage/create-template-an-validate-input-with-django-forms/img10.png)
+![img.png](../../../assets/imgs/django/basic%20usage/create-template-and-validate-input-with-django-forms/img10.png)
 
-![img.png](../../../assets/imgs/django/basic%20usage/create-template-an-validate-input-with-django-forms/img11.png)
+![img.png](../../../assets/imgs/django/basic%20usage/create-template-and-validate-input-with-django-forms/img11.png)
 
 <p>
 The method 'form.is_valid()' will check the valid status of input value by clean() function. 
@@ -342,8 +342,8 @@ I create some logic that filter the strange email address having 'test.com' at t
 {% endhighlight %}
 
 
-![img.png](../../../assets/imgs/django/basic%20usage/create-template-an-validate-input-with-django-forms/img12.png)
-![img.png](../../../assets/imgs/django/basic%20usage/create-template-an-validate-input-with-django-forms/img13.png)
+![img.png](../../../assets/imgs/django/basic%20usage/create-template-and-validate-input-with-django-forms/img12.png)
+![img.png](../../../assets/imgs/django/basic%20usage/create-template-and-validate-input-with-django-forms/img13.png)
 
 
 <p>
@@ -361,14 +361,14 @@ So, If you need to raise an error related validating user's input, you should us
 # ... 
 {% endhighlight %}
 
-![img.png](../../../assets/imgs/django/basic%20usage/create-template-an-validate-input-with-django-forms/img14.png)
+![img.png](../../../assets/imgs/django/basic%20usage/create-template-and-validate-input-with-django-forms/img14.png)
 
 <p>
 With Exception 'ValidationError', you do not know whether your input data is saved to database successfully on not.
 So, I also have to send the exception string to the 'index.html' file.
 </p>
 
-![img.png](../../../assets/imgs/django/basic%20usage/create-template-an-validate-input-with-django-forms/img15.png)
+![img.png](../../../assets/imgs/django/basic%20usage/create-template-and-validate-input-with-django-forms/img15.png)
 
 
 <p>
@@ -391,8 +391,8 @@ Let me assume that I have to valid nation will not be 'USA'. Then,
 #    return nation
 {% endhighlight %}
 
-![img.png](../../../assets/imgs/django/basic%20usage/create-template-an-validate-input-with-django-forms/img16.png)
-![img.png](../../../assets/imgs/django/basic%20usage/create-template-an-validate-input-with-django-forms/img17.png)
+![img.png](../../../assets/imgs/django/basic%20usage/create-template-and-validate-input-with-django-forms/img16.png)
+![img.png](../../../assets/imgs/django/basic%20usage/create-template-and-validate-input-with-django-forms/img17.png)
 
 <p>
 Please be advised that if you want to use 'clean_{field_name}' method, you must return the field value at the end of the code.
@@ -400,14 +400,14 @@ If you forget it, form class will understand that user input is not passed valid
 'is_valid()' refers to the dictionary variable named 'cleaned_data' and if one of fields are extracted from it, is_valid() will be False.
 </p>
 
-![img.png](../../../assets/imgs/django/basic%20usage/create-template-an-validate-input-with-django-forms/img18.png)
+![img.png](../../../assets/imgs/django/basic%20usage/create-template-and-validate-input-with-django-forms/img18.png)
 
 
 <p>
 Saving validated data is easy. Just use your model class defined and write down the saving logic on your 'models.py' file.
 </p>
 
-![img.png](../../../assets/imgs/django/basic%20usage/create-template-an-validate-input-with-django-forms/img19.png)
+![img.png](../../../assets/imgs/django/basic%20usage/create-template-and-validate-input-with-django-forms/img19.png)
 
 
 <br><br>
