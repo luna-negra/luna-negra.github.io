@@ -1,5 +1,5 @@
 ---
-title: 0009. Create Template and Validate Input with Django Forms
+title: 0009. Create Template and Validate Input with Django ModelForms
 date: "2024-08-19 00:22:00 +0900"
 edited: 
 tags:
