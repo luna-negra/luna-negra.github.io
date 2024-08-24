@@ -1,7 +1,7 @@
 ---
 title: 0011. Basic Usage of AbstractBaseUser for Custom UserModel
 date: "2024-08-24 13:59:00 +0900"
-edited: 
+edited: "2024-08-24 14:25:00 +0900"
 tags:
   - django 
   - AbstractBaseUser
@@ -218,17 +218,23 @@ Let me edit 'MyUser' and try to log in with admin account again.
 ![img.png](../../../assets/imgs/django/basic%20usage/basic-usage-of-abstractbaseuser-for-custom-usermodel/img16.png)
 ![img.png](../../../assets/imgs/django/basic%20usage/basic-usage-of-abstractbaseuser-for-custom-usermodel/img17.png)
 
-{% highlight ruby %}
-#  * You can not see the basic user information in that site yet, due to the permission issue.
-{% endhighlight %}
+<p>
+In this status, you can not see any fields on your UserModel. 
+To see this model, your UserModel must have fields named 'is_staff' and 'is_superuser' and inherit 'PermissionsMixin' class.
+Definitely, your admin account must have True value on 'is_staff' and 'is_superuser'.
+</p>
+
+![img.png](../../../assets/imgs/django/basic%20usage/basic-usage-of-abstractbaseuser-for-custom-usermodel/img18.png)
+![img.png](../../../assets/imgs/django/basic%20usage/basic-usage-of-abstractbaseuser-for-custom-usermodel/img19.png)
 
 
 <br><br>
 ## <span id="ctn4">IV. References</span>
 <p>
-  <li>
-    <ul><a href="https://docs.djangoproject.com/en/4.2/topics/auth/customizing/" target="_blank">https://docs.djangoproject.com/en/4.2/topics/auth/customizing/</a></ul>
-    <ul><a href="https://stackoverflow.com/questions/14723099/attributeerror-manager-object-has-no-attribute-get-by-natural-key-error-in" target="_blank">https://stackoverflow.com/questions/14723099/attributeerror-manager-object-has-no-attribute-get-by-natural-key-error-in</a></ul>
-    <ul><a href="https://reintech.io/blog/creating-a-custom-user-management-system-in-django" target="_blank">https://reintech.io/blog/creating-a-custom-user-management-system-in-django</a></ul>
-  </li>
+  <ul>
+    <li><a href="https://docs.djangoproject.com/en/4.2/topics/auth/customizing/" target="_blank">https://docs.djangoproject.com/en/4.2/topics/auth/customizing/</a></li>
+    <li><a href="https://stackoverflow.com/questions/14723099/attributeerror-manager-object-has-no-attribute-get-by-natural-key-error-in" target="_blank">https://stackoverflow.com/questions/14723099/attributeerror-manager-object-has-no-attribute-get-by-natural-key-error-in</a></li>
+    <li><a href="https://reintech.io/blog/creating-a-custom-user-management-system-in-django" target="_blank">https://reintech.io/blog/creating-a-custom-user-management-system-in-django</a></li>
+    <li><a href="https://stackoverflow.com/questions/33556515/django-admin-you-dont-have-permission-to-edit-anything" target="_blank">https://stackoverflow.com/questions/33556515/django-admin-you-dont-have-permission-to-edit-anything</a></li>
+  </ul>
 </p>
