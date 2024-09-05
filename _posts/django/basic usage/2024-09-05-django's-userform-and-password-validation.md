@@ -1,6 +1,6 @@
 ---
 title: 0012. Django's Userform and Password Validation
-date: "2024-09-05 13:59:00 +0900"
+date: "2024-09-05 19:30:00 +0900"
 edited: 
 tags:
   - django 
@@ -335,7 +335,7 @@ If you type the password 'test123' again, you can see one more error message tha
 ## <span id="ctn5">V. References</span>
 <p>
   <ul>
-     <li><a href="https://docs.djangoproject.com/en/4.2/topics/auth/passwords/" target="_blank">https://docs.djangoproject.com/en/4.2/topics/auth/passwords/</a></li>
+     <li><a href="https://docs.djangoproject.com/en/4.2/topics/auth/passwords/#writing-your-own-validator" target="_blank">https://docs.djangoproject.com/en/4.2/topics/auth/passwords/#writing-your-own-validator</a></li>
      <li><a href="https://docs.djangoproject.com/en/4.2/topics/auth/customizing/" target="_blank">https://docs.djangoproject.com/en/4.2/topics/auth/customizing/</a></li>
   </ul>
 </p>
