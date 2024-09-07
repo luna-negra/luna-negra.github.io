@@ -1,7 +1,7 @@
 ---
 title: 0005. Understanding CA and Certificate
 date: "2024-07-31 16:24:00 +0900"
-edited: "2024-08-14 19:45:00 +0900"
+edited: "2024-09-07 15:10:00 +0900"
 tags:
   - Certificate Authority
   - private key
@@ -199,10 +199,10 @@ After copying or moving the public key file, execute command below and register 
 {% endhighlight %}
 
 <p>[ Ubuntu ]</p>
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img15.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img14.png)
 
 <p> [ CentOS 8 Stream ]</p>
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img15.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img15.png)
 
 <p>
 You can check your CA certificate are registered as a trusted CA on your host with command below.
@@ -217,10 +217,10 @@ You can check your CA certificate are registered as a trusted CA on your host wi
 {% endhighlight %}
 
 <p>[ Ubuntu ]</p>
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img16.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img16.png)
 
 <p>[ CentOS 8 Stream ]</p>
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img17.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img17.png)
 
 <p>
 Now, I can use our CA to sign another public key for TLS communication.
