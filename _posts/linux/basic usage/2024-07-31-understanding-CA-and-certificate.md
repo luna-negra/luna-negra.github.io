@@ -121,10 +121,10 @@ You can see the trusted CA list on your linux system with command below.
 {% endhighlight %}
 
 <p>[ Ubuntu ]</p>
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img8.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img8.png)
 
 <p>[ CentOS 8 Stream ]</p>
-![img.png](../../../assets/imgs/linux/basic%20usage/understand-ca-and-certificate/img9.png)
+![img.png](../../../assets/imgs/linux/basic%20usage/understanding-ca-and-certificate/img9.png)
 
 <p>
 This CA can grave a digital sign on public keys. If the CA are registered as a trusted one and server's public key is signed by trusted CA, 
