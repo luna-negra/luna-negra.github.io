@@ -1,6 +1,6 @@
 ---
 title: 00013. Create Custom DNS server
-date: "2024-09-09 17:56g:00 +0900"
+date: "2024-09-09 17:56:00 +0900"
 edited: 
 tags:
   - Ubuntu
