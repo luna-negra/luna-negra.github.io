@@ -1,7 +1,7 @@
 ---
 title: 0015. Sending Mail in Django with Google AppPass
 date: "2024-09-30 16:25:00 +0900"
-edited: 
+edited: "2024-10-01 12:12:00 +0900"
 tags:
   - django 
   - send mail
