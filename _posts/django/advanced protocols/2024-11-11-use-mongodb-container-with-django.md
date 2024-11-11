@@ -1,7 +1,7 @@
 ---
-title: 0016. Use MongoDB Container in Django
+title: 0016. Use MongoDB Container with Django
 date: "2024-11-11 19:56:00 +0900"
-edited: 
+edited: "2024-11-11 20:08:00 +0900"
 tags:
   - django 
   - settings
@@ -99,7 +99,7 @@ sudo docker exec -it mongo mongosh
 If there is no issue, you can see some MongoDB' logs and DB prompt with 'test>'
 </p>
 
-![img.png](../../../assets/imgs/django/advanced%20protocols/use-mongodb-container-in-django/img1.png)
+![img.png](../../../assets/imgs/django/advanced%20protocols/use-mongodb-container-with-django/img1.png)
 
 [ Check the Port from the Remote ]
 {% highlight ruby linenos %}
@@ -107,7 +107,7 @@ If there is no issue, you can see some MongoDB' logs and DB prompt with 'test>'
 curl -v telnet://[IP_ADDRESS]:[PORT]
 {% endhighlight %}
 
-![img.png](../../../assets/imgs/django/advanced%20protocols/use-mongodb-container-in-django/img2.png)
+![img.png](../../../assets/imgs/django/advanced%20protocols/use-mongodb-container-with-django/img2.png)
 
 
 <br>
@@ -135,7 +135,7 @@ db.createUser({
 *  You can enter the password string instead of passwordPrompt().
 {% endhighlight %}
 
-![img.png](../../../assets/imgs/django/advanced%20protocols/use-mongodb-container-in-django/img3.png)
+![img.png](../../../assets/imgs/django/advanced%20protocols/use-mongodb-container-with-django/img3.png)
 
 <p>
 Now you have a superuser 'admin' in your Mongo DB Server. If you see the new account was created, 
@@ -188,7 +188,7 @@ db.createCollection("[COLLECTION_NAME]")
 *  If you did not create any collection with superuser, new user's permission must be 'dbOwner'.
 {% endhighlight %}
 
-![img.png](../../../assets/imgs/django/advanced%20protocols/use-mongodb-container-in-django/img4.png)
+![img.png](../../../assets/imgs/django/advanced%20protocols/use-mongodb-container-with-django/img4.png)
 
 
 <br><br>
@@ -258,7 +258,7 @@ class User(mg.Document):
 {% endhighlight %}
 
 
-![img.png](../../../assets/imgs/django/advanced%20protocols/use-mongodb-container-in-django/img5.png)
+![img.png](../../../assets/imgs/django/advanced%20protocols/use-mongodb-container-with-django/img5.png)
 
 <p>
 <span style="color: yellow;">[Be Advised]</span><br>
@@ -276,9 +276,9 @@ I will creat a new user for my Django project, which connects to Mongo DB contai
 To this, I will open the login page in my browser and do a sign up process.
 </p>
 
-![img.png](../../../assets/imgs/django/advanced%20protocols/use-mongodb-container-in-django/img6.png)
+![img.png](../../../assets/imgs/django/advanced%20protocols/use-mongodb-container-with-django/img6.png)
 
-![img.png](../../../assets/imgs/django/advanced%20protocols/use-mongodb-container-in-django/img7.png)
+![img.png](../../../assets/imgs/django/advanced%20protocols/use-mongodb-container-with-django/img7.png)
 
 
 <p>
@@ -296,7 +296,7 @@ use DB_NAME
 db.COLLECTION_NAME.find()
 {% endhighlight %}
 
-![img.png](../../../assets/imgs/django/advanced%20protocols/use-mongodb-container-in-django/img8.png)
+![img.png](../../../assets/imgs/django/advanced%20protocols/use-mongodb-container-with-django/img8.png)
 
 
 <br><br>
