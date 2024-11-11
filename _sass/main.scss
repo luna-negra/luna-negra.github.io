@@ -172,7 +172,7 @@ div#article_info {
     padding-bottom: 5px;
 }
 
-td.article_info_key, td.article_info_value {
+td.article_info_key, td.article_info_value, td.article_info_value > a {
     color: #aaaaaa;
     font-size: 10pt;
 

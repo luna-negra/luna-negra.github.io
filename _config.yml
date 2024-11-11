@@ -5,7 +5,7 @@
 # yourself editing this file very often, consider using Jekyll's data files
 # feature for the data you need to update frequently.
 #
-# For technical reasons, this file is *NOT* reloaded automatically when you use
+# For technical reasons, this file is *NOT* reloaded automatically when you use-mongodb-container-in-django
 # 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 #
 # If you need help with YAML syntax, here are some quick references for you:
@@ -41,14 +41,15 @@ permalink: none
 # Settings for jekyll theme ubuntu.
 # In terms of defaults, please refer to default front-end at the site below.
 # 'https://jekyllrb.com/docs/step-by-step/09-collections/#front-matter-defaults'
-owner: Pavel # enter your post author name without double quote.
+owner: luna-negra # enter your post author name without double quote.
 defaults:
   - scope:
       path: ""
       type: "post"
     values:
       layout: "post"
-      author: "Pavel" # enter your post author name with double quote.
+      author: "luna-negra" # enter your post author name with double quote.
+      github: "https://github.com/luna-negra"
 
 # Exclude from processing.
 # The following items will not be processed, by default.
