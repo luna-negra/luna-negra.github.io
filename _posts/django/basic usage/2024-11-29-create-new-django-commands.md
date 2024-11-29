@@ -1,7 +1,7 @@
 ---
 title: 0019. Create New Django Commands
 date: "2024-11-29 20:42:00 +0900"
-edited: 
+edited: "2024-11-29 20:47:00 +0900"
 tags:
   - django 
   - new command
