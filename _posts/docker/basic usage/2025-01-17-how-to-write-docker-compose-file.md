@@ -1,7 +1,7 @@
 ---
 title: 0020. How to Write Docker-Compose file
 date: "2025-01-16 16:00:00 +0900"
-edited: 
+edited: "2025-01-20 11:49:00 +0900"
 tags:
   - docker container
   - docker build
@@ -260,8 +260,8 @@ You do not have to stop all container with typing command for each container. yo
 ![img.png](../../../assets/imgs/docker/basic%20usage/how_to_write_docker_compose-file/img9.png)
 
 <p>
-The command 'docker-compose' will effect on all containers defined in docker-compose file.<br>
-Therefore, if you want to restart or remove all containers, just execute 'docker-compose up -d' or 'docker-compose rm' 
+The command 'docker-compose' will affect on all containers defined in docker-compose file.<br>
+Therefore, if you want to restart or remove all containers, just execute 'docker-compose restart' or 'docker-compose rm' 
 </p>
 
 <p>
