@@ -9,3 +9,6 @@
 
 - category: linux
   sub_category: ['basic usage']
+
+- category: project
+  sub_category: ['mizuhara']
